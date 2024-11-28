@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Student</title>
+    <link rel='stylesheet' href='/stylesheets/addCourses.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+  </head>
+  <body>
+    <%- include('./parts/header.ejs') %>
+       <div class="wrapper">
+         <main class="page">
+           <div class="page__container">
+             <div class="page__title">
+               <h1><%= student?.id ? 'Edit' : 'Add' %> Student</h1>
+             </div>
+             <% if (errors.length > 0) { %>
+            <ul class="error-box">
+              <% errors.forEach(function(error) { %>
+                <li class="error-message"><%= error.msg %></li>
+              <% }); %>
+              <% } %>
+            </ul>
+             <form method="POST" action="/students/add<%= student?.id ? '/' + student?.id : '' %>" id="form-st">
+              
+                 <label for="name" class="form-group">Name:
+                 <input type="text" id="name" name="name" required value="<%= student?.name %>" placeholder="Name Student">
+              </label>
+               
+                 <label for="surname" class="form-group">Surname:
+                 <input type="text" name="surname" required value="<%= student?.surname %>" placeholder="Surname Student">
+               </label>
+                 <label for="age" class="form-group">Age:
+                 <input type="number" name="age" required value="<%= student?.age %>" placeholder="Age Student">
+               </label>
+                 <label for="rating" class="form-group">Rating:
+                 <input type="number" name="rating" required value="<%= student?.rating %>" placeholder="Average Rating">
+               </label>
+              <label for="rol" class="form-group" >Choose a Role
+                <select name="rol" id="rol" method="post" action="/students/add" class="form__select" >
+                  <option value="">Role Students</option>
+                  <option value="std">Student</option>
+                  <option value="lect">Student Lecturer</option>
+                </select>
+               </label>
+               <label for="course" class="form-group">Select Course:
+                 <!-- <pre><%#= JSON.stringify(courses, null, 2) %></pre>                                -->
+               <select name="course" id="mySelect" class="form__select multiple" multiple>
+                <% if(courses) { %>
+                  <% if(Array.isArray(courses) && courses?.length > 0) { %>
+                   <% courses.forEach(course => { %>
+                     <option value="<%= course.id %>"><%= course.title %></option>
+                     <% }); %>
+                       <% } %>
+                     <% } else if(course){ %>
+                       <option value="<%= course.id %>"><%= course.title %></option>
+                     <% } else { %>
+                   <option value="Courses">There ara not courses yet</option>
+                  <% } %>
+               </select>
+              </label>
+              <label for="seminar_title" class="form-group disabled" disabled>Title Seminar:
+                 <input type="text" name="seminar_title"  value="<%= student?.seminar_title %>" placeholder="Title seminar">
+              </label>
+              <label for="seminar_time" class="form-group disabled" disabled>Duration of Seminar
+                 <input type="number" name="seminar_time" value="<%= student?.seminar_time %>" placeholder="Time">
+              </label>
+               <button class="btn" type="submit"><%= student?.id ? 'Edit' : 'Add' %></button>
+             </form>
+           </div>
+         </main>
+       </div>
+       <script src="/javascripts/script.js"></script>
+  </body>
+</html>

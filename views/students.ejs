@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students List</title>
+  <link rel="stylesheet" href="/stylesheets/students.css">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+</head>
+<body>
+  <%- include('./parts/header.ejs') %>
+  <div class="wrapper">
+    <h1>All Students</h1>
+    <table class="students-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Full Name</th>
+          <th>Age</th>
+          <th>Rating</th>
+          <th>Courses</th>
+          <th>Role</th>
+          <th>Seminar Title</th>
+          <th>Seminar Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach((student, index) => { %>
+          <tr class="<%= index % 2 === 0 ? 'even' : 'odd' %>">
+            <td><%= index + 1 %></td>
+            <td><a href="/students/<%= student?.id %>"><%= student.fullName %></a></td>
+            <td><%= student.age %></td>
+            <td><%= student.rating %></td>
+            <td>
+              <% if (Array.isArray(student.course)) { %>
+                <ul>
+                  <% student.course.forEach(course => { %>
+                    <li><%= course.title %></li>
+                  <% }); %>
+                </ul>
+              <% } else { %>
+                No courses
+              <% } %>
+            </td>
+            <td><%= student.isLector ? 'Lecturer' : 'Student' %></td>
+            <td><%= student.isLector ? student.seminar_title || 'N/A' : 'Not a Lecturer' %></td>
+            <td><%= student.isLector ? student.seminar_time || 'N/A' : 'Not a Lecturer' %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

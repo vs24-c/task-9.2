@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/about.css">
+  <title>About</title>
+</head>
+<body>
+  <header class="header">
+  <a href="/" class="header__logo">
+    <span>uni</span>
+    <span>course</span>
+  </a>
+  <div class="header__menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/courses">Courses</a></li>
+      <li><a href="/courses/add">Add Course</a></li>
+      <li><a href="/students/add">Add Students</a></li>
+      <li><a href="/students">Students List</a></li>
+    </ul>
+  </div>
+</header>
+    <div class="wrapper">
+      <h1>About Us</h1>
+      <h5>Умова Задачи</h5>
+      <p>
+        Задача 2. Розробіть веб-додаток для управління курсами та студентами. У базі даних будуть дві основні моделі: Course (курс: назва курсу, тривалість, список студентів) та Student (студент: ім’я, вік, середній бал). Кожен курс може мати список студентів (кілька студентів). Курс також може містити масив семінарів, які проводять студенти (кожен семінар є об'єктом з полями: тема семінару, відповідальний студент, тривалість семінару).
+      </p>
+      <h5>Моя логіка</h5>
+      <p>
+        Першим зтворюється курс, наступним можно створювати студентів. Усі створені курсі додаються автоматично до створення студента.Якщо студент лектор то може вибрати лише один курс. По лінку на ФІО студента можно перейти до його даних, також там видалення та редогування студента.
+      </p>
+      <h5>Проблеми</h5>
+      <p>
+        Проблема з видаленням студенту, він зависає та неперевантажується. Наче б то по логіці він мав би видолятись та оновлюватись. Але чомусь зависає. Буду вдячний за допомогу рішення цього питання
+      </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: orchid;
+}
+
+.student-card {
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+}
+
+.student-card.student {
+  background-color: #f0f8ff;
+}
+
+.student-card.lector {
+  background-color: #fff8dc;
+  border-color: goldenrod;
+}
+
+.student-card h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.student-card p {
+  margin: 5px 0;
+}
+
+.student-card h3 {
+  margin-top: 20px;
+  color: #555;
+}
+.btn-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+.card__btn {
+  display: inline-flex;
+  padding: 7px 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: green;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s ease;
+  &:hover {
+  transition: background-color 0.3s ease;
+    background-color: red;
+    color: #fff8dc;
+  }
+}

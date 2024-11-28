@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses</title>
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/courses.css">
+</head>
+<body>
+  <%- include('./parts/header.ejs') %>
+  <div class="wrapper">
+    <h1>Courses</h1>
+    <main class="page">
+      <div class="page__container">
+        <div class="card__product">
+          <% courses.forEach(course => { %>
+            <div class="course-container">
+              <h2><%= course.title %></h2>
+              <p><strong>Duration:</strong> <%= course.time %> hours</p>
+              <h3><a href="/students">Students List:</a></h3>
+                <table>
+                  <tbody>
+                    <% students?.forEach(student => { %>
+                      <% if (Array.isArray(student.course)) { %>
+                        <% student.course.forEach(courseObj => { %>
+                          <% if (courseObj._id.toString() === course.id.toString()) { %>
+                            <tr>
+                              <td>
+                                <a href="/students/<%= student.id %>"><%= student.fullName %></a>
+                              </td>
+                            </tr>
+                          <% } %>
+                        <% }); %>
+                      <% } %>
+                    <% }); %>
+                  </tbody>
+                </table>
+              <h3>Seminar:</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Time</th>
+                    <th>Lecturer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <% const lecturers = students?.filter(student => 
+                      Array.isArray(student.course) &&
+                      student.course.some(courseObj => 
+                        courseObj._id.toString() === course.id.toString()
+                      ) && student.isLector
+                    ); %>
+                      <% if (lecturers && lecturers.length > 0) { %>
+                      <p>Lecturers:</p>
+                        <% lecturers.forEach(lecturer => { %>
+                           <tr>
+                    <td><%= lecturer?.seminar_title || 'Not Assigned' %></td>
+                    <td><%= lecturer?.seminar_time || 'Not Assigned' %></td>
+                    <td>
+                    <% if (lecturer) { %>
+                      <a href="/students/<%= lecturer.id %>"><%= lecturer.fullName %></a>
+                    <% } else { %>
+                        Not Assigned
+                    <% } %>
+                    </td>
+                  </tr>
+                 <% }); %>
+                <% } else { %>
+                      <p>No lecturers assigned for this course.</p>
+                    <% } %>
+                  <!-- <pre><%#= JSON.stringify(lecturer, null, 2) %></pre> -->                               
+                </tbody>
+              </table>
+              <div class="btn-box">
+                <a href="/courses/add/<%= course?.id %>" class="card__btn edit">Edit</a>
+                <button 
+                class="card__btn delete-btn" 
+                data-id="/courses/<%= course?.id %>"
+                >Delete</button>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>

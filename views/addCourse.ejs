@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Courses</title>
+    <link rel='stylesheet' href='/stylesheets/addCourses.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+  </head>
+  <body>
+    <%- include('./parts/header.ejs') %>
+       <div class="wrapper">
+         <main class="page">
+           <div class="page__container">
+             <div class="page__title">
+               <h1><%= course?.id ? 'Edit' : 'Add' %> Course</h1>
+             </div>
+             <% if (errors.length > 0) { %>
+            <ul class="error-box">
+              <% errors.forEach(function(error) { %>
+                <li class="error-message"><%= error.msg %></li>
+              <% }); %>
+              <% } %>
+            </ul>
+             <form id="form-c" method="POST" action="/courses/add<%= course?.id ? '/' +  course.id : ''%>">              
+              <label for="title" class="form-group">title:
+                 <input type="text" id="title" name="title" required value="<%= course?.title %>" placeholder="Title Course">
+              </label>               
+              <label for="time" class="form-group">Duration of Courses:
+                 <input type="number" name="time" required value="<%= course?.time %>" placeholder="Time">
+              </label>
+               <button class="btn" type="submit"><%= course?.id ? 'Edit' : 'Add' %></button>
+             </form>
+           </div>
+         </main>
+       </div>
+       <script src="/javascripts/script.js"></script>
+  </body>
+</html>

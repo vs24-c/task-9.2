@@ -1,0 +1,20 @@
+body {
+  padding: 50px;
+  font-family:  'sans-serif';
+  font-size: 16px;
+}
+
+a {
+  color: #00B7FF;
+}
+h1 {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: orchid;
+}
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #666;
+}

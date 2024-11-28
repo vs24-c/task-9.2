@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student: <%= student.name %> <%= student.surname %></title>
+  <link rel="stylesheet" href="/stylesheets/student.css">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+</head>
+<body>
+  <%- include('./parts/header.ejs') %>
+  <div class="container">
+    <h1>Student Details</h1>
+    <div class="student-card <%= student.isLector ? 'lector' : 'student' %>">
+      <h2>Name: <%= student.name %> </h2>
+      <h2>Surname: <%= student.surname %></h2>
+      <p><strong>Age:</strong> <%= student.age %></p>
+      <p><strong>Rating:</strong> <%= student.rating %></p>
+      <p><strong>Course:</strong>
+        <ul>
+          <% student.course.forEach(course => { %>
+            <li><%= course.title %></li>
+          <% }); %>
+        </ul>
+        </p>
+      <% if (student.isLector) { %>
+        <h3>Lector Details</h3>
+        <p><strong>Seminar Title:</strong> <%= student.seminar_title %></p>
+        <p><strong>Seminar Time:</strong> <%= student.seminar_time %> hours</p>
+      <% } else { %>
+        <h3>Role:</h3>
+        <p>Regular Student</p>
+      <% } %>
+      <div class="btn-box">
+        <a class="card__btn" href="/students/add/<%= student?._id %>">Edit</a>
+        <button 
+        class="card__btn delete-btn" 
+          data-id="/students/<%= student?._id %>">Delete</button>
+      </div>
+    </div>
+  </div>
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>
+
